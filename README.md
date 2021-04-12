@@ -1,5 +1,8 @@
 # dnd-map-viewer
 
+## Preview  
+![preview image](https://raw.githubusercontent.com/dotjulia/dnd-map-viewer/master/preview.png)
+
 ## Project setup
 ```
 yarn install
