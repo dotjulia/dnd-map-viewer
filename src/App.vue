@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <settings :players="players" @newbackground="setBackground($event)" @deleteplayer="deletePlayer($event)" @addplayer="addPlayer()"/>
-    <div id="movables" style="position: absolute;">
+    <settings @changedbackground="backgroundSizeChanged($event)" :backgroundSize="backgroundImageSize" :players="players" @rerender="rerender()" @newbackground="setBackground($event)" @deleteplayer="deletePlayer($event)" @addplayer="addPlayer()"/>
+    <canvas-renderer :backgroundImageSize="backgroundImageSize" :players="players" :backgroundImage="imageData" ref="canvasrenderer"/>
+    <!--<div id="movables" style="position: absolute;">
       <movable-entity v-for="player in players" :key="player.id" :width="player.size" :height="player.size" :backgroundColor="player.backgroundColor" :foregroundColor="player.foregroundColor" :content="player.content"/>
     </div>
-    <background :backgroundImage="imageData"/>
+    <background :backgroundImage="imageData"/>-->
   </div>
 </template>
 
 <script>
 import Background from './components/Background.vue'
+import CanvasRenderer from './components/CanvasRenderer.vue'
 import MovableEntity from './components/MovableEntity.vue'
 import Settings from './components/Settings.vue'
 export default {
@@ -18,8 +20,16 @@ export default {
     MovableEntity,
     Background,
     Settings,
+    CanvasRenderer,
   },
   methods: {
+    backgroundSizeChanged(e) {
+
+      this.backgroundImageSize = +e;
+    },
+    rerender() {
+      this.$refs.canvasrenderer.rerender();
+    },
     setBackground(bg) {
       this.imageData = bg;
     },
@@ -38,6 +48,7 @@ export default {
   },
   data() {
     return {
+      backgroundImageSize: 800,
       imageData: 'https://i.pinimg.com/736x/9f/ec/db/9fecdba47cfcda751e4eadce08ff95a7.jpg',
       players: [
         {

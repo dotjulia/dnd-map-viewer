@@ -44,10 +44,21 @@
                     Background
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                    <label class="v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default">
-                        <input type="file" @input="onSelectFile" ref="fileInput" style="display:none"/>
-                        Select Background
-                    </label>
+                    <div class="flexbox">
+                        <label class="v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default" style="margin-top: auto; margin-bottom: auto; margin-right: 20px;">
+                            <input type="file" @input="onSelectFile" ref="fileInput" style="display:none"/>
+                            Select Background
+                        </label>
+                        <v-text-field @change="$emit('changedbackground', size)" class="background-size-input" solo append-icon="mdi-image-size-select-large" v-model="size"></v-text-field>
+                    </div>
+                </v-expansion-panel-content>
+            </v-expansion-panel>
+            <v-expansion-panel>
+                <v-expansion-panel-header>
+                    Debug
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                    <v-btn @click="$emit('rerender')">Rerender</v-btn>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
@@ -62,10 +73,15 @@ export default {
   name: 'Settings',
   props: {
       players: Array,
+      backgroundSize: Number,
   },
   data() {
       return {
+          size: 400,
       };
+  },
+  mounted() {
+      this.size = this.backgroundSize;
   },
   methods: {
       deletePlayer(id) {
@@ -92,5 +108,16 @@ export default {
 .settings {
     position: relative;
     width: 100%;
+}
+.flexbox {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: stretch;
+}
+.background-size-input {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 50px;
 }
 </style>
