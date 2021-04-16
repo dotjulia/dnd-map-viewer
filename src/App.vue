@@ -14,6 +14,7 @@ import Background from './components/Background.vue'
 import CanvasRenderer from './components/CanvasRenderer.vue'
 import MovableEntity from './components/MovableEntity.vue'
 import Settings from './components/Settings.vue'
+
 export default {
   name: 'app',
   components: {
