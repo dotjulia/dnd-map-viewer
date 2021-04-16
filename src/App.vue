@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       backgroundImageSize: 800,
-      imageData: 'https://i.pinimg.com/736x/9f/ec/db/9fecdba47cfcda751e4eadce08ff95a7.jpg',
+      imageData: 'https://i.redd.it/oteavhdmcnl61.jpg',
       players: [
         {
           id: 0,
