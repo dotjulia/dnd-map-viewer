@@ -10,7 +10,7 @@
             <!--<input type="color" solo v-model="player.foregroundColor"/>-->
         </td>
         <td><input type="text" solo v-model="player.size"></td>
-        <v-btn icon color="pink" @click.native="deletePlayer()">
+        <v-btn icon color="pink" @click="deletePlayer()">
             <v-icon>mdi-delete</v-icon>
         </v-btn>
     </tr>
@@ -26,15 +26,15 @@ export default {
     mounted() {
         console.log(this.$vuetify.theme.themes.dark);
     },
+    methods: {
+        deletePlayer() {
+            this.$emit('deleteplayer', this.player.id);
+        }
+    },
     props: {
         player: Object,
         data() {
             return {};
-        },
-        methods: {
-            deletePlayer() {
-                this.$emit('deleteplayer', this.player.id);
-            }
         },
     }
 }

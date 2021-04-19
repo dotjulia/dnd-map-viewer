@@ -68,6 +68,7 @@
 
 <script>
 import PlayerDisplay from './PlayerDisplay.vue'
+
 export default {
   components: { PlayerDisplay },
   name: 'Settings',
